@@ -28,31 +28,6 @@
 - 模拟支付
 - 评论系统
 
-下面说下使用流程
-### 一，找老师索要源码，或者到老师微信公号回复“点餐小程序”获取源码
-老师微信：2501902696
-老师公号：
-![编程小石头](https://upload-images.jianshu.io/upload_images/6273713-0a02e8e618d96535.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
-
-### 二，导入java代码
-- 1，我的java开发工具是IntelliJ IDEA，最好和我保持一致
-- 2，如果你不知道如何导入java源码到idea，可以看下下面视频教程。
-[https://edu.csdn.net/course/play/23443/265597](https://edu.csdn.net/course/play/23443/265597)
-
-### 三，创建数据表格
-导入源码成功后，执行下图的sql语句，建表
-![sql语句建表](https://upload-images.jianshu.io/upload_images/6273713-44c40e53d4d191f1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
-我是用IntelliJ IDEA自带的建表工具进行快速建表和管理表的
-![idea自带mysql管理工具](https://upload-images.jianshu.io/upload_images/6273713-f24a49164d90705c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
-如果你想用idea自带的管理工具，可以看下面这个视频：
-[https://edu.csdn.net/course/play/23443/268165](https://edu.csdn.net/course/play/23443/268165)
-
-### 四，修改配置
-只需要把mysql数据库的账号和密码改成你的就行了。
-![image.png](https://upload-images.jianshu.io/upload_images/6273713-8b9b83fbaf4fde27.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
-### 五，在seller_info表里创建一个管理员用于登录管理后台
-![创建管理员](https://upload-images.jianshu.io/upload_images/6273713-09e0b9c4b329d02c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
-
 ---
 #小程序代码
 ### 一，导入源码到小程序开发工具
@@ -68,10 +43,6 @@
 
 ### 三，如果要扫码点餐的话，就扫码下面二维码。识别桌号
 ![image.png](https://upload-images.jianshu.io/upload_images/6273713-d213da9873e4cebd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
-
-到这里我们java后台+点餐小程序实现就可以了。
-如果导入代码中有任何问题可以加我微信：2501902696（备注编程）
-![image.png](https://upload-images.jianshu.io/upload_images/6273713-c1e83a9b2c2dc441.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 
 
