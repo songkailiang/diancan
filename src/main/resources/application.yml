@@ -5,7 +5,7 @@ spring:
     #    driver-class-name: com.mysql.jdbc.Driver
     username: root
     password: 123456
-    url: jdbc:mysql://localhost/sell?characterEncoding=utf-8&useSSL=false&serverTimeZone=UTC&useOldAliasMetadataBehavior=true
+    url: jdbc:mysql://localhost:3306/diancan?characterEncoding=utf-8&useSSL=false&serverTimeZone=UTC&useOldAliasMetadataBehavior=true
   jpa:
     show-sql: true
     hibernate:
@@ -16,4 +16,3 @@ spring:
 #定义网址
 projectUrl:
   sell: localhost:8080
-
