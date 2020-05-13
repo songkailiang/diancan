@@ -13,7 +13,7 @@ import lombok.Data;
 
 /**
  * 类目
- * Created by wwd
+ * Created skl wwd
  */
 @Entity
 @DynamicUpdate
@@ -32,6 +32,8 @@ public class ProductCategory {
     /** 类目编号. */
     private Integer categoryType;
 
+    /** 门店ID. */
+    private Long storeId;
 
     private Date createTime;
 

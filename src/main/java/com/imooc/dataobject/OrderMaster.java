@@ -14,7 +14,7 @@ import javax.persistence.Id;
 import lombok.Data;
 
 /**
- * Created by wwd
+ * Created by skl
  */
 @Entity
 @Data
@@ -33,13 +33,19 @@ public class OrderMaster {
     private String buyerPhone;
 
     /** 买家桌号. */
-    private String buyerAddress;
+    private String tableNo;
 
     /** 买家微信Openid. */
     private String buyerOpenid;
 
     /** 订单总金额. */
     private BigDecimal orderAmount;
+
+    /** 实收总金额. */
+    private BigDecimal realAmount;
+
+    /** 门店ID. */
+    private Long storeId;
 
     /** 订单状态, 默认为0新下单. */
     private Integer orderStatus = OrderStatusEnum.NEW.getCode();

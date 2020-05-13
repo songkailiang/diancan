@@ -48,12 +48,13 @@ public class SellerProductController {
     @GetMapping("/list")
     public ModelAndView list(@RequestParam(value = "page", defaultValue = "1") Integer page,
                              @RequestParam(value = "size", defaultValue = "10") Integer size,
-                             Map<String, Object> map) {
+                             Map<String, Object> map,Long storeId) {
         PageRequest request = new PageRequest(page - 1, size);
         Page<ProductInfo> productInfoPage = productService.findAll(request);
         map.put("productInfoPage", productInfoPage);
         map.put("currentPage", page);
         map.put("size", size);
+        map.put("storeId", storeId);
         return new ModelAndView("product/list", map);
     }
 
@@ -100,16 +101,16 @@ public class SellerProductController {
 
     @GetMapping("/index")
     public ModelAndView index(@RequestParam(value = "productId", required = false) String productId,
-                      Map<String, Object> map) {
+                      Map<String, Object> map,Long storeId) {
         if (!StringUtils.isEmpty(productId)) {
             ProductInfo productInfo = productService.findOne(productId);
             map.put("productInfo", productInfo);
         }
 
         //查询所有的类目
-        List<ProductCategory> categoryList = categoryService.findAll();
+        List<ProductCategory> categoryList = categoryService.findByStoreId(storeId);
         map.put("categoryList", categoryList);
-
+        map.put("storeId", storeId);
         return new ModelAndView("product/index", map);
     }
 
@@ -123,10 +124,10 @@ public class SellerProductController {
     @PostMapping("/save")
     public ModelAndView save(@Valid ProductForm form,
                              BindingResult bindingResult,
-                             Map<String, Object> map) {
+                             Map<String, Object> map,Long storeId) {
         if (bindingResult.hasErrors()) {
             map.put("msg", bindingResult.getFieldError().getDefaultMessage());
-            map.put("url", "/sell/seller/product/index");
+            map.put("url", "/sell/seller/product/index?storeId="+storeId);
             return new ModelAndView("common/error", map);
         }
 
@@ -142,11 +143,11 @@ public class SellerProductController {
             productService.save(productInfo);
         } catch (SellException e) {
             map.put("msg", e.getMessage());
-            map.put("url", "/sell/seller/product/index");
+            map.put("url", "/sell/seller/product/index?storeId="+storeId);
             return new ModelAndView("common/error", map);
         }
 
-        map.put("url", "/sell/seller/product/list");
+        map.put("url", "/sell/seller/product/list?storeId="+storeId);
         return new ModelAndView("common/success", map);
     }
 }

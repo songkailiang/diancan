@@ -1,9 +1,11 @@
 package com.imooc.controller;
 
 import com.imooc.dataobject.ProductCategory;
+import com.imooc.dataobject.StoreTable;
 import com.imooc.exception.SellException;
 import com.imooc.form.CategoryForm;
-import com.imooc.service.CategoryService;
+import com.imooc.form.StoreTableForm;
+import com.imooc.service.StoreTableService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,44 +21,44 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * 卖家类目
- * Created by wwd
+ * 门店桌位
+ * Created by skl
  */
 @Controller
-@RequestMapping("/seller/category")
-public class SellerCategoryController {
+@RequestMapping("/seller/storetable")
+public class StoreTableController {
 
     @Autowired
-    private CategoryService categoryService;
+    private StoreTableService storeTableService;
 
     /**
-     * 类目列表
+     * 列表
      * @param map
      * @return
      */
     @GetMapping("/list")
     public ModelAndView list(Map<String, Object> map,Long storeId) {
-        List<ProductCategory> categoryList = categoryService.findByStoreId(storeId);
-        map.put("categoryList", categoryList);
+        List<StoreTable> storeTableList = storeTableService.findByStoreId(storeId);
+        map.put("storeTableList", storeTableList);
         map.put("storeId", storeId);
-        return new ModelAndView("category/list", map);
+        return new ModelAndView("storetable/list", map);
     }
 
     /**
      * 展示
-     * @param categoryId
+     * @param tableId
      * @param map
      * @return
      */
     @GetMapping("/index")
-    public ModelAndView index(@RequestParam(value = "categoryId", required = false) Integer categoryId,
+    public ModelAndView index(@RequestParam(value = "tableId", required = false) Integer tableId,
                               Map<String, Object> map,Long storeId) {
-        if (categoryId != null) {
-            ProductCategory productCategory = categoryService.findOne(categoryId);
-            map.put("category", productCategory);
+        if (tableId != null) {
+            StoreTable storeTable = storeTableService.findOne(tableId);
+            map.put("storeTable", storeTable);
         }
         map.put("storeId", storeId);
-        return new ModelAndView("category/index", map);
+        return new ModelAndView("storetable/index", map);
     }
 
     /**
@@ -67,30 +69,30 @@ public class SellerCategoryController {
      * @return
      */
     @PostMapping("/save")
-    public ModelAndView save(@Valid CategoryForm form,
+    public ModelAndView save(@Valid StoreTableForm form,
                              BindingResult bindingResult,
                              Map<String, Object> map,Long storeId) {
         if (bindingResult.hasErrors()) {
             map.put("msg", bindingResult.getFieldError().getDefaultMessage());
-            map.put("url", "/sell/seller/category/index?storeId="+storeId);
+            map.put("url", "/sell/seller/storetable/index?storeId="+storeId);
             return new ModelAndView("common/error", map);
         }
 
-        ProductCategory productCategory = new ProductCategory();
-        productCategory.setStoreId(storeId);
+        StoreTable storeTable = new StoreTable();
+        storeTable.setStoreId(storeId);
         try {
-            if (form.getCategoryId() != null) {
-                productCategory = categoryService.findOne(form.getCategoryId());
+            if (form.getTableId() != null) {
+                storeTable = storeTableService.findOne(form.getTableId());
             }
-            BeanUtils.copyProperties(form, productCategory);
-            categoryService.save(productCategory);
+            BeanUtils.copyProperties(form, storeTable);
+            storeTableService.save(storeTable);
         } catch (SellException e) {
             map.put("msg", e.getMessage());
-            map.put("url", "/sell/seller/category/list?storeId="+storeId);
+            map.put("url", "/sell/seller/storetable/list?storeId="+storeId);
             return new ModelAndView("common/error", map);
         }
 
-        map.put("url", "/sell/seller/category/list?storeId="+storeId);
+        map.put("url", "/sell/seller/storetable/list?storeId="+storeId);
         return new ModelAndView("common/success", map);
     }
 }

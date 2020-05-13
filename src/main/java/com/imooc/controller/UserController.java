@@ -48,8 +48,8 @@ public class UserController {
         user.setUsername(userForm.getUsername());
         user.setOpenid(userForm.getOpenid());
         user.setPhone(userForm.getPhone());
-        user.setZhuohao(userForm.getZhuohao());
-        user.setRenshu(userForm.getRenshu());
+        user.setTableNo(userForm.getZhuohao());
+        user.setPeopleNum(userForm.getRenshu());
 
         return ResultVOUtil.success(repository.save(user));
     }

@@ -1,36 +1,40 @@
 package com.imooc.dataobject;
 
+import lombok.Data;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
-
-import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-
-import lombok.Data;
+import java.util.Date;
 
 /**
- * Created by qcl on 2019-03-31
- * 微信：2501902696
- * desc:
+ * 桌位信息
+ * Created by skl
  */
 @Entity
-@Data
 @DynamicUpdate
 @DynamicInsert
-public class Comment {
+@Data
+public class StoreTable {
 
+    /** 门店ID. */
     @Id
     @GeneratedValue
-    private int commentId;
-    private String openid;
-    private String name;
-    private String avatarUrl;//头像
-    private String content;
+    private Integer tableId;
+
+    /** 桌号. */
+    private Integer tableNo;
+
+    /** 门店ID. */
+    private Long storeId;
+
     private Date createTime;
 
+    private Date updateTime;
 
+    public StoreTable() {
+    }
 
 }

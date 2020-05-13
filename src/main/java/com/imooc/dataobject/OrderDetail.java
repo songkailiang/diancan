@@ -6,9 +6,10 @@ import org.hibernate.annotations.DynamicInsert;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import java.math.BigDecimal;
+import java.util.Date;
 
 /**
- * Created by wwd
+ * Created by skl
  */
 @Entity
 @Data
@@ -34,4 +35,13 @@ public class OrderDetail {
 
     /** 商品小图. */
     private String productIcon;
+
+    /** 门店ID. */
+    private Long storeId;
+
+    /** 创建时间. */
+    private Date createTime;
+
+    /** 更新时间. */
+    private Date updateTime;
 }

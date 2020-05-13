@@ -1,35 +1,43 @@
 package com.imooc.dataobject;
 
+import lombok.Data;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
-
-import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-
-import lombok.Data;
+import java.util.Date;
 
 /**
- * Created by wwd
- * 用户信息表
+ * 门店
+ * Created by skl
  */
-@Data
 @Entity
 @DynamicUpdate
 @DynamicInsert
-public class User {
+@Data
+public class Store {
 
+    /** 门店ID. */
     @Id
     @GeneratedValue
-    private int id;
-    private String username;
-    private String phone;
-    private String openid;
-    private String tableNo;//桌号
-    private String peopleNum;//用餐人数
+    private Long storeId;
+
+    /** 门店名称. */
+    private String storeName;
+
+    /** 门店地址. */
+    private String storeAddress;
+
+    /** 门店电话. */
+    private String storeMobile;
 
     private Date createTime;
+
     private Date updateTime;
+
+    public Store() {
+    }
+
 }

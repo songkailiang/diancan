@@ -26,4 +26,6 @@ public class Picture {
     private String picUrl;
     private String picMessage;
     private Date picCreate;
+    /** 门店ID. */
+    private Long storeId;
 }
