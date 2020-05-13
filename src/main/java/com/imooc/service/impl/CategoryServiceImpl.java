@@ -34,6 +34,11 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
+    public List<ProductCategory> findByStoreId(Long storeId) {
+        return repository.findByStoreId(storeId);
+    }
+
+    @Override
     public ProductCategory save(ProductCategory productCategory) {
         return repository.save(productCategory);
     }

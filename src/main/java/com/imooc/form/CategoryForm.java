@@ -15,4 +15,7 @@ public class CategoryForm {
 
     /** 类目编号. */
     private Integer categoryType;
+
+    /** 门店Id. */
+    private Long storeId;
 }

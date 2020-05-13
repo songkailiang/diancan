@@ -10,7 +10,7 @@
     <#--主要内容content-->
     <div id="page-content-wrapper">
         <div class="container-fluid">
-            <button type="button" class="btn btn-default"   onclick="window.location.href = '/sell/seller/category/index?storeId='+${storeId}" >添加类别</button>
+            <button type="button" class="btn btn-default"   onclick="window.location.href = '/sell/seller/storetable/index?storeId='+${storeId}" >添加桌位</button>
         </div>
         <div class="container-fluid">
             <div class="row clearfix">
@@ -18,9 +18,8 @@
                     <table class="table table-bordered table-condensed">
                         <thead>
                         <tr>
-                            <th>类目id</th>
-                            <th>名字</th>
-                            <th>type</th>
+                            <th>桌位ID</th>
+                            <th>桌号</th>
                             <th>创建时间</th>
                             <th>修改时间</th>
                             <th>操作</th>
@@ -28,14 +27,13 @@
                         </thead>
                         <tbody>
 
-                        <#list categoryList as category>
+                        <#list storeTableList as storetable>
                         <tr>
-                            <td>${category.categoryId}</td>
-                            <td>${category.categoryName}</td>
-                            <td>${category.categoryType}</td>
-                            <td>${category.createTime}</td>
-                            <td>${category.updateTime}</td>
-                            <td><a href="/sell/seller/category/index?categoryId=${category.categoryId}&storeId=${storeId}">修改</a></td>
+                            <td>${storetable.tableId}</td>
+                            <td>${storetable.tableNo}</td>
+                            <td>${storetable.createTime}</td>
+                            <td>${storetable.updateTime}</td>
+                            <td><a href="/sell/seller/storetable/index?tableId=${storetable.tableId}&storeId=${storeId}">修改</a></td>
                         </tr>
                         </#list>
                         </tbody>

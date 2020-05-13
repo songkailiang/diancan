@@ -10,6 +10,9 @@
     <#--主要内容content-->
     <div id="page-content-wrapper">
         <div class="container-fluid">
+            <button type="button" class="btn btn-default"   onclick="window.location.href = '/sell/seller/product/index?storeId='+${storeId}" >添加菜品</button>
+        </div>
+        <div class="container-fluid">
             <div class="row clearfix">
                 <div class="col-md-12 column">
                     <table class="table table-bordered table-condensed">
@@ -19,9 +22,8 @@
                             <th>名称</th>
                             <th>图片</th>
                             <th>单价</th>
-                            <th>库存</th>
                             <th>描述</th>
-                            <th>类目</th>
+                            <th>类别编号</th>
                             <th>创建时间</th>
                             <th>修改时间</th>
                             <th colspan="2">操作</th>
@@ -35,12 +37,11 @@
                             <td>${productInfo.productName}</td>
                             <td><img height="100" width="100" src="${productInfo.productIcon}" alt=""></td>
                             <td>${productInfo.productPrice}</td>
-                            <td>${productInfo.productStock}</td>
                             <td>${productInfo.productDescription}</td>
                             <td>${productInfo.categoryType}</td>
                             <td>${productInfo.createTime}</td>
                             <td>${productInfo.updateTime}</td>
-                            <td><a href="/sell/seller/product/index?productId=${productInfo.productId}">修改</a></td>
+                            <td><a href="/sell/seller/product/index?productId=${productInfo.productId}&storeId=${storeId}">修改</a></td>
                             <td>
                                 <#if productInfo.getProductStatusEnum().message == "在架">
                                     <a href="/sell/seller/product/off_sale?productId=${productInfo.productId}">下架</a>

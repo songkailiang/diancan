@@ -22,10 +22,6 @@
                             <input name="productPrice" type="text" class="form-control" value="${(productInfo.productPrice)!''}"/>
                         </div>
                         <div class="form-group">
-                            <label>库存</label>
-                            <input name="productStock" type="number" class="form-control" value="${(productInfo.productStock)!''}"/>
-                        </div>
-                        <div class="form-group">
                             <label>描述</label>
                             <input name="productDescription" type="text" class="form-control" value="${(productInfo.productDescription)!''}"/>
                         </div>
@@ -48,6 +44,7 @@
                             </select>
                         </div>
                         <input hidden type="text" name="productId" value="${(productInfo.productId)!''}">
+                        <input hidden type="text" name="storeId" value="${(storeId)!''}">
                         <button type="submit" class="btn btn-default">提交</button>
                     </form>
                 </div>
