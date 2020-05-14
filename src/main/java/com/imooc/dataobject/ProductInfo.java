@@ -10,6 +10,7 @@ import org.hibernate.annotations.DynamicUpdate;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Transient;
 import java.math.BigDecimal;
 import java.util.Date;
 
@@ -42,7 +43,7 @@ public class ProductInfo {
     private Integer productStatus = ProductStatusEnum.UP.getCode();
 
     /** 类目编号. */
-    private Integer categoryType;
+    private Integer categoryId;
 
     /** 门店ID. */
     private Long storeId;
@@ -50,6 +51,9 @@ public class ProductInfo {
     private Date createTime;
 
     private Date updateTime;
+
+    @Transient
+    private String categoryName;
 
     @JsonIgnore
     public ProductStatusEnum getProductStatusEnum() {

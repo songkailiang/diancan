@@ -19,6 +19,7 @@ create table `store_table`
 (
   `table_id` int not null auto_increment,
   `table_no` int not null DEFAULT 0 comment '桌号',
+  `table_name` varchar(64) not null DEFAULT '' comment '桌台名称',
   `store_id`   bigint(20) not null DEFAULT 0 comment '门店ID',
   `create_time`   timestamp   not null default current_timestamp comment '创建时间',
   `update_time`   timestamp   not null default current_timestamp on update current_timestamp comment '修改时间',
@@ -30,7 +31,6 @@ create table `product_category`
 (
   `category_id`   int  not null auto_increment,
   `category_name` varchar(64) not null DEFAULT '' comment '类目名字',
-  `category_type` int not null comment '类目类别',
   `store_id`   bigint(20) not null DEFAULT 0 comment '门店ID',
   `create_time`   timestamp   not null default current_timestamp comment '创建时间',
   `update_time`   timestamp   not null default current_timestamp on update current_timestamp comment '修改时间',
@@ -45,7 +45,7 @@ create table `product_info`
   `product_description` varchar(64) comment '描述',
   `product_icon`        varchar(512) comment '图片',
   `product_status`      tinyint(3)   DEFAULT '0' COMMENT '商品状态,0正常1下架',
-  `category_type` int   not null comment '类目编号',
+  `category_id` int   not null comment '类目ID',
   `store_id`   bigint(20) not null DEFAULT 0 comment '门店ID',
   `create_time`         timestamp     not null default current_timestamp comment '创建时间',
   `update_time`         timestamp     not null default current_timestamp on update current_timestamp comment '修改时间',

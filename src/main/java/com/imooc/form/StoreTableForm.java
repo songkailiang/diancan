@@ -13,6 +13,9 @@ public class StoreTableForm {
     /** 门店桌号. */
     private Integer tableNo;
 
+    /** 桌号名称. */
+    private String tableName;
+
     /** 门店ID. */
     private Long storeId;
 }

@@ -29,5 +29,5 @@ public class ProductForm {
     private String productIcon;
 
     /** 类目编号. */
-    private Integer categoryType;
+    private Integer categoryId;
 }

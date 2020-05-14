@@ -21,8 +21,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 /**
  * 卖家端商品
@@ -40,6 +42,7 @@ public class SellerProductController {
 
     /**
      * 列表
+     *
      * @param page
      * @param size
      * @param map
@@ -48,9 +51,29 @@ public class SellerProductController {
     @GetMapping("/list")
     public ModelAndView list(@RequestParam(value = "page", defaultValue = "1") Integer page,
                              @RequestParam(value = "size", defaultValue = "10") Integer size,
-                             Map<String, Object> map,Long storeId) {
+                             Map<String, Object> map, Long storeId) {
+        Map<Integer,String> categoryMap=new HashMap<>();
         PageRequest request = new PageRequest(page - 1, size);
         Page<ProductInfo> productInfoPage = productService.findAll(request);
+        if (productInfoPage != null && productInfoPage.getContent() != null) {
+            List<Integer> categoryIdList = productInfoPage.getContent().stream()
+                    .map(e -> e.getCategoryId())
+                    .collect(Collectors.toList());
+            List<ProductCategory> productCategoryList = categoryService.findByCategoryIdIn(categoryIdList);
+            if (productCategoryList != null&&productCategoryList.size()>0) {
+                for (ProductCategory productCategory:productCategoryList){
+                    categoryMap.put(productCategory.getCategoryId(),productCategory.getCategoryName());
+                }
+            }
+
+            for(ProductInfo productInfo:productInfoPage.getContent()){
+                productInfo.setCategoryName(categoryMap.get(productInfo.getCategoryId()));
+            }
+        }
+
+
+
+
         map.put("productInfoPage", productInfoPage);
         map.put("currentPage", page);
         map.put("size", size);
@@ -60,6 +83,7 @@ public class SellerProductController {
 
     /**
      * 商品上架
+     *
      * @param productId
      * @param map
      * @return
@@ -78,15 +102,17 @@ public class SellerProductController {
         map.put("url", "/sell/seller/product/list");
         return new ModelAndView("common/success", map);
     }
+
     /**
      * 商品下架
+     *
      * @param productId
      * @param map
      * @return
      */
     @RequestMapping("/off_sale")
     public ModelAndView offSale(@RequestParam("productId") String productId,
-                               Map<String, Object> map) {
+                                Map<String, Object> map) {
         try {
             productService.offSale(productId);
         } catch (SellException e) {
@@ -101,7 +127,7 @@ public class SellerProductController {
 
     @GetMapping("/index")
     public ModelAndView index(@RequestParam(value = "productId", required = false) String productId,
-                      Map<String, Object> map,Long storeId) {
+                              Map<String, Object> map, Long storeId) {
         if (!StringUtils.isEmpty(productId)) {
             ProductInfo productInfo = productService.findOne(productId);
             map.put("productInfo", productInfo);
@@ -116,6 +142,7 @@ public class SellerProductController {
 
     /**
      * 保存/更新
+     *
      * @param form
      * @param bindingResult
      * @param map
@@ -124,10 +151,10 @@ public class SellerProductController {
     @PostMapping("/save")
     public ModelAndView save(@Valid ProductForm form,
                              BindingResult bindingResult,
-                             Map<String, Object> map,Long storeId) {
+                             Map<String, Object> map, Long storeId) {
         if (bindingResult.hasErrors()) {
             map.put("msg", bindingResult.getFieldError().getDefaultMessage());
-            map.put("url", "/sell/seller/product/index?storeId="+storeId);
+            map.put("url", "/sell/seller/product/index?storeId=" + storeId);
             return new ModelAndView("common/error", map);
         }
 
@@ -143,11 +170,11 @@ public class SellerProductController {
             productService.save(productInfo);
         } catch (SellException e) {
             map.put("msg", e.getMessage());
-            map.put("url", "/sell/seller/product/index?storeId="+storeId);
+            map.put("url", "/sell/seller/product/index?storeId=" + storeId);
             return new ModelAndView("common/error", map);
         }
 
-        map.put("url", "/sell/seller/product/list?storeId="+storeId);
+        map.put("url", "/sell/seller/product/list?storeId=" + storeId);
         return new ModelAndView("common/success", map);
     }
 }

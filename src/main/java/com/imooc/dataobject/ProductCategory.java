@@ -29,9 +29,6 @@ public class ProductCategory {
     /** 类目名字. */
     private String categoryName;
 
-    /** 类目编号. */
-    private Integer categoryType;
-
     /** 门店ID. */
     private Long storeId;
 
@@ -42,8 +39,7 @@ public class ProductCategory {
     public ProductCategory() {
     }
 
-    public ProductCategory(String categoryName, Integer categoryType) {
+    public ProductCategory(String categoryName) {
         this.categoryName = categoryName;
-        this.categoryType = categoryType;
     }
 }

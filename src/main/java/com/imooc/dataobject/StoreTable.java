@@ -27,6 +27,9 @@ public class StoreTable {
     /** 桌号. */
     private Integer tableNo;
 
+    /** 桌名. */
+    private String tableName;
+
     /** 门店ID. */
     private Long storeId;
 
