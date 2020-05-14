@@ -36,29 +36,21 @@ public class BuyerProductController {
     public ResultVO list() {
         //1. 查询所有的上架商品
         List<ProductInfo> productInfoList = productService.findUpAll();
-
-        //2. 查询类目(一次性查询)
-//        List<Integer> categoryTypeList = new ArrayList<>();
-        //传统方法
-//        for (ProductInfo productInfo : productInfoList) {
-//            categoryTypeList.add(productInfo.getCategoryType());
-//        }
-        //精简方法(java8, lambda)
-        List<Integer> categoryTypeList = productInfoList.stream()
-                .map(e -> e.getCategoryType())
+        List<Integer> categoryIdList = productInfoList.stream()
+                .map(e -> e.getCategoryId())
                 .collect(Collectors.toList());
-        List<ProductCategory> productCategoryList = categoryService.findByCategoryTypeIn(categoryTypeList);
+        List<ProductCategory> productCategoryList = categoryService.findByCategoryIdIn(categoryIdList);
 
         //3. 数据拼装
         List<ProductVO> productVOList = new ArrayList<>();
         for (ProductCategory productCategory: productCategoryList) {
             ProductVO productVO = new ProductVO();
-            productVO.setCategoryType(productCategory.getCategoryType());
+            //productVO.setCategoryType(productCategory.getCategoryType());
             productVO.setCategoryName(productCategory.getCategoryName());
 
             List<ProductInfoVO> productInfoVOList = new ArrayList<>();
             for (ProductInfo productInfo: productInfoList) {
-                if (productInfo.getCategoryType().equals(productCategory.getCategoryType())) {
+                if (productInfo.getCategoryId().equals(productCategory.getCategoryId())) {
                     ProductInfoVO productInfoVO = new ProductInfoVO();
                     BeanUtils.copyProperties(productInfo, productInfoVO);
                     productInfoVOList.add(productInfoVO);

@@ -20,7 +20,6 @@
                         <tr>
                             <th>类目id</th>
                             <th>名字</th>
-                            <th>type</th>
                             <th>创建时间</th>
                             <th>修改时间</th>
                             <th>操作</th>
@@ -32,7 +31,6 @@
                         <tr>
                             <td>${category.categoryId}</td>
                             <td>${category.categoryName}</td>
-                            <td>${category.categoryType}</td>
                             <td>${category.createTime}</td>
                             <td>${category.updateTime}</td>
                             <td><a href="/sell/seller/category/index?categoryId=${category.categoryId}&storeId=${storeId}">修改</a></td>

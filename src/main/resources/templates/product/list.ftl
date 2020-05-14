@@ -23,7 +23,7 @@
                             <th>图片</th>
                             <th>单价</th>
                             <th>描述</th>
-                            <th>类别编号</th>
+                            <th>所属类别</th>
                             <th>创建时间</th>
                             <th>修改时间</th>
                             <th colspan="2">操作</th>
@@ -38,7 +38,7 @@
                             <td><img height="100" width="100" src="${productInfo.productIcon}" alt=""></td>
                             <td>${productInfo.productPrice}</td>
                             <td>${productInfo.productDescription}</td>
-                            <td>${productInfo.categoryType}</td>
+                            <td>${productInfo.categoryName}</td>
                             <td>${productInfo.createTime}</td>
                             <td>${productInfo.updateTime}</td>
                             <td><a href="/sell/seller/product/index?productId=${productInfo.productId}&storeId=${storeId}">修改</a></td>

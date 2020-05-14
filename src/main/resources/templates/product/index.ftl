@@ -32,10 +32,10 @@
                         </div>
                         <div class="form-group">
                             <label>类目</label>
-                            <select name="categoryType" class="form-control">
+                            <select name="categoryId" class="form-control">
                                 <#list categoryList as category>
-                                    <option value="${category.categoryType}"
-                                            <#if (productInfo.categoryType)?? && productInfo.categoryType == category.categoryType>
+                                    <option value="${category.categoryId}"
+                                            <#if (productInfo.categoryId)?? && productInfo.categoryId == category.categoryId>
                                                 selected
                                             </#if>
                                         >${category.categoryName}

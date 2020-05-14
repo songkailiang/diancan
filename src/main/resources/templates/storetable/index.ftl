@@ -17,7 +17,11 @@
                             <label>桌号</label>
                             <input name="tableNo" type="text" class="form-control" value="${(storeTable.tableNo)!''}"/>
                         </div>
-                        <input hidden type="text" name="categoryId" value="${(storetable.tableId)!''}">
+                        <div class="form-group">
+                            <label>桌名</label>
+                            <input name="tableName" type="text" class="form-control" value="${(storeTable.tableName)!''}"/>
+                        </div>
+                        <input hidden type="text" name="tableId" value="${(storeTable.tableId)!''}">
                         <input hidden type="text" name="storeId" value="${(storeId)!''}">
                         <button type="submit" class="btn btn-default">提交</button>
                     </form>
